@@ -49,16 +49,5 @@ services:
             - /etc/group:/etc/group:ro
         command: composer install --ignore-platform-reqs --no-scripts
 
-    fakeapi:
-        image: node:12-alpine
-        working_dir: /app
-        volumes:
-            - ./fake/jsonresume-api:/app
-        ports:
-            - 8081:8081
-        environment:
-            PORT: 8081
-        command: sh -c "npm i && npm start"
-
 volumes:
     db-data:
