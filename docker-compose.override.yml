@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+    mysql:
+        image: mysql:8
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: laravel
+        volumes:
+            - db-data:/var/lib/mysql
+
+    nginx:
+        environment:
+            VIRTUAL_HOST: testing.local
+        ports:
+            - "8080:80"
+        volumes:
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./public:/app/public
+            - ./storage/app/public:/app/public/storage
+
+    php:
+        build:
+            target: dev
+        depends_on:
+            - composer
+            - mysql
+        volumes:
+            - ./:/app
+            - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:ro
+            - ./storage/app/public:/app/public/storage
+
+    node:
+        image: node:12-alpine
+        working_dir: /app
+        volumes:
+            - ./:/app
+        command: sh -c "npm install && npm run watch"
+
+    composer:
+        image: composer:1.10
+        working_dir: /app
+        volumes:
+            - ./:/app
+            - /etc/passwd:/etc/passwd:ro
+            - /etc/group:/etc/group:ro
+        command: composer install --ignore-platform-reqs --no-scripts
+
+    fakeapi:
+        image: node:12-alpine
+        working_dir: /app
+        volumes:
+            - ./fake/jsonresume-api:/app
+        ports:
+            - 8081:8081
+        environment:
+            PORT: 8081
+        command: sh -c "npm i && npm start"
+
+volumes:
+    db-data:
