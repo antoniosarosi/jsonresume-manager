@@ -28,7 +28,7 @@ class PublishController extends Controller {
                 return redirect(route('login'));
             }
             if (auth()->user()->id !== $publish->user_id) {
-                return abort(Response::HTTP_FORBIDDEN);
+                abort(Response::HTTP_FORBIDDEN);
             }
         }
         
@@ -47,7 +47,7 @@ class PublishController extends Controller {
         $resume = Resume::findOrFail($data['resume_id']);
 
         if (auth()->user()->id !== $resume->user_id) {
-            return abort(Response::HTTP_FORBIDDEN);
+            abort(Response::HTTP_FORBIDDEN);
         }
 
         return $this->render($resume, $theme);
