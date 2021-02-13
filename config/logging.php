@@ -80,6 +80,15 @@ return [
                 'stream' => 'php://stderr',
             ],
         ],
+        
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDOUT_FORMATTER'),
+            'with' => [
+                'stream' => 'php://stdout',
+            ],
+        ],
 
         'syslog' => [
             'driver' => 'syslog',
