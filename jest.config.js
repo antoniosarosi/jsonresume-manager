@@ -11,5 +11,8 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest'
-  }
+  },
+  // The default environment in Jest is a Node.js environment. 
+  //If you are building a web app, you can use a browser-like environment through jsdom instead.
+  "testEnvironment": "jsdom"
 }
