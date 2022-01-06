@@ -41,13 +41,13 @@ services:
         command: sh -c "npm install && npm run watch"
 
     composer:
-        image: composer:1.10
+        image: composer:2.1.4
         working_dir: /app
         volumes:
             - ./:/app
             - /etc/passwd:/etc/passwd:ro
             - /etc/group:/etc/group:ro
-        command: composer install --ignore-platform-reqs --no-scripts
+        command: sh -c "composer install --ignore-platform-reqs --no-scripts && composer update"
 
 volumes:
     db-data:

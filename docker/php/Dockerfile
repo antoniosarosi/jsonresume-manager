@@ -1,7 +1,7 @@
 # ----------------------
 # The FPM base container
 # ----------------------
-FROM php:8-fpm-alpine as dev
+FROM php:8.0.2-fpm-alpine as dev
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
@@ -12,7 +12,7 @@ WORKDIR /app
 # ----------------------
 # Composer install step
 # ----------------------
-FROM composer:1.10 as build
+FROM composer:2.1.4 as build
 
 WORKDIR /app
 
