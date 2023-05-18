@@ -34,7 +34,7 @@ class ResumeController extends Controller {
     public function create() {
         $resume = json_encode(Resume::factory()->make());
         return view('resumes/create', compact('resume'));
-        return view('resumes/create');
+//        return view('resumes/create');
     }
 
     public function store(StoreResume $request) {
@@ -92,7 +92,7 @@ class ResumeController extends Controller {
             ]);
         }
         return redirect(route('resumes.index'))->with('alert', [
-            'type' => 'success',
+            'type' => 'danger',
             'messages' => ["Resume {$resume->title} deleted"]
         ]);
     }

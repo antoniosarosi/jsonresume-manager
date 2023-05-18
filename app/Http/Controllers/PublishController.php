@@ -31,7 +31,7 @@ class PublishController extends Controller {
                 abort(Response::HTTP_FORBIDDEN);
             }
         }
-        
+
         return $this->render($publish->resume, $publish->theme);
     }
 
@@ -57,7 +57,7 @@ class PublishController extends Controller {
         $response = Http::post("{$this->jsonResumeAPi}/theme/{$theme->theme}", [
             'resume' => $resume->content,
         ]);
-        
+
         return response($response, $response->status());
     }
 

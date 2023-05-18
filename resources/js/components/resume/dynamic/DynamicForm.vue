@@ -51,7 +51,7 @@ import mixin from './mixin';
 export default {
   name: 'DynamicForm',
 
-  mixins: [mixin],
+  mixins: [mixin]  ,
 
   components: {
     VueFormGenerator,

@@ -23,7 +23,7 @@ app.post("/theme/:theme", (req, res) => {
     return res.status(400).json({ error: "Theme not found" });
   };
   const render = require(`jsonresume-theme-${theme}`).render;
- 
+
   console.log(json)
   res.send(render(json));
 });

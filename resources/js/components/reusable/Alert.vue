@@ -13,8 +13,8 @@
     </ul>
     <button
       type="button"
-      class="close"
-      data-dismiss="alert"
+      class="btn-close"
+      data-bs-dismiss="alert"
       aria-label="Close"
       @click="$emit('close')"
     >
@@ -26,7 +26,6 @@
 <script>
 export default {
   name: 'Alert',
-
   props: {
     messages: {
       type: [String, Array],

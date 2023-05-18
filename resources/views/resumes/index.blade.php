@@ -14,13 +14,13 @@
               </p>
               <p>{{ $resume->created_at }}</p>
               <div class="d-lg-inline-flex">
-                <div>
+                <div class="m-lg-2">
                   <a href="{{ route('resumes.edit', $resume->id) }}" class="btn btn-primary mb-2">
                     <i class="fas fa-pencil-alt"></i>
                     Edit Resume
                   </a>
                 </div>
-                <div class="ml-lg-1">
+                <div class="m-lg-2">
                   <form method="POST" action="{{ route('resumes.destroy', $resume->id) }}">
                     @csrf
                     @method('DELETE')

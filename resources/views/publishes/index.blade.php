@@ -12,13 +12,13 @@
               <a href="{{ $publish->url }}">{{ $publish->url }}</a>
               <p>{{ $publish->created_at }}</p>
               <div class="d-lg-inline-flex">
-                <div>
+                <div class="m-lg-2">
                   <a href="{{ route('publishes.edit', $publish->id) }}" class="btn btn-primary mb-2">
                     <i class="fas fa-pencil-alt"></i>
                     Edit Publish
                   </a>
                 </div>
-                <div class="ml-lg-1">
+                <div class="m-lg-2">
                   <form method="POST" action="{{ route('publishes.destroy', $publish->id) }}">
                     @csrf
                     @method('DELETE')
