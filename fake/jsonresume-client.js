@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 axios
-  .get('http://localhost:8080/api/resumes/1', {
+  .get('http://localhost:8080/api/resumes', {
     headers: {
-      Authorization: 'Bearer 1|cl4fVO8riliupB0g1DrRnF6ZMU1X16R47nTJD0CM',
+      Authorization: 'Bearer 1|R1SY5y9r3390bGPdsFL8iogKDjogryhrEHLNvxFw',
     },
   })
   .then((res) => {

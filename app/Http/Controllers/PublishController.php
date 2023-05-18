@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResumePublished;
 use App\Models\Resume;
 use App\Models\Publish;
 use App\Models\Theme;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PublishController extends Controller {
     private $rules = [
@@ -77,6 +79,7 @@ class PublishController extends Controller {
         $resume = $publish->resume()->get()->first();
         $theme = $publish->theme()->get()->first();
 
+        Mail::to($request->user())->send(new ResumePublished($resume));
 
         return redirect(route('publishes.index'))->with('alert', [
             'type' => 'success',
